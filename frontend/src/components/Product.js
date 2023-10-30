@@ -94,7 +94,7 @@ function Product(props) {
         <div className="d-flex justify-content-between align-items-center">
           <Link to={`/admin/product/${product._id}`}>
             <button className="btn btn-primary" style={{ backgroundColor: '#3AD784', color: '#FFFFFF', fontSize: '14px' }}>
-              Edit Product
+              Edit Post
             </button>
           </Link>
         </div>

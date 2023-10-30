@@ -63,3 +63,16 @@ data = {
     "output_urls": output_urls,
     "output_labels": output_labels
 }
+
+
+try:
+    response = requests.post(api_url, json=data)
+
+    # Check the response status code
+    if response.status_code == 201:
+        logging.info("Upload record created successfully.")
+    else:
+        logging.info("Failed to update the record. Status code:", response.status_code)
+
+except requests.exceptions.RequestException as e:
+    logging.info("An error occurred while sending the request:", e)

@@ -76,3 +76,5 @@ try:
 
 except requests.exceptions.RequestException as e:
     logging.info("An error occurred while sending the request:", e)
+    
+    logging.info("Python script finished")

@@ -53,3 +53,13 @@ for image_path in image_paths:
 
     Image.fromarray(result.plot()[:, :, ::-1]).save(output_path)
     output_urls.append(f'{case_id}_{image_path}_output.png')
+    
+    # Define the URL of your API endpoint
+api_url = "http://localhost:3000/upload/complete"  # Replace with your actual API URL
+
+# Prepare the data to send in the request
+data = {
+    "case_id": case_id,
+    "output_urls": output_urls,
+    "output_labels": output_labels
+}

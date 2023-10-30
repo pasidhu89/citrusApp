@@ -18,3 +18,7 @@ logging.info("Python script started")
 if len(sys.argv) != 3:
     print("Please provide both the image path and the case_id as command-line arguments.")
     sys.exit(1)
+    
+    # Get the image path from the command-line argument
+image_paths = sys.argv[1].split(',')  # Split the comma-separated image paths
+case_id = sys.argv[2]

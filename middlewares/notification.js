@@ -2,6 +2,10 @@ const admin = require('../app');
 
 class FCM {
     async sendMessage(title, body, registrationToken) {
+        if (!title || !body || !registrationToken) {
+            throw new Error('Missing required parameters');
+        }
+
         const message = {
             notification: {
                 title: title,

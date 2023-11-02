@@ -1,20 +1,21 @@
 const jwt = require('jsonwebtoken');
 
-function validateAuth(req, res, next) {
-    const authToken = req.headers.authorization;
+function verifyToken(req, res, next) {
+    const token = req.headers.authorization;
 
-    if (!authToken) {
+    if (!token) {
         return res.status(401).json({ message: 'Unauthorized: Token missing' });
     }
 
-    jwt.verify(authToken, 'your-secret-key', (err, decoded) => {
+    jwt.verify(token, 'your-secret-key', (err, decoded) => {
         if (err) {
+            console.error('JWT verification failed:', err);
             return res.status(401).json({ message: 'Unauthorized: Invalid token' });
         }
 
-        req.user = decoded.userId;
+        req.userId = decoded.userId;
         next();
     });
 }
 
-module.exports = validateAuth;
+module.exports = verifyToken;

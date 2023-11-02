@@ -1,5 +1,3 @@
-
-
 const admin = require('../app');
 
 class FCM {
@@ -12,7 +10,12 @@ class FCM {
             token: registrationToken,
         };
 
-        return admin.messaging().send(message);
+        try {
+            const response = await admin.messaging().send(message);
+            return response;
+        } catch (error) {
+            throw error;
+        }
     }
 }
 

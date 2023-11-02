@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
-const registrationSchema = new mongoose.Schema({
-    fullName: { type: String, required: true },
-    emailAddress: { type: String, required: true, unique: true },
-    phoneNumber: { type: String, required: true },
-    dateOfBirth: Date,
-    residentialAddress: String,
-    occupation: String,
+const userRegistrationSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    mobile: { type: String, required: true },
+    birthday: Date,
+    address: String,
+    profession: String,
     location: {
         type: { type: String, default: 'Point' },
         coordinates: {
@@ -14,13 +14,14 @@ const registrationSchema = new mongoose.Schema({
             index: '2dsphere',
         },
     },
-    userPassword: { type: String, required: true },
-    fcmToken: String,
-    registrationDate: { type: Date, default: Date.now },
+    password: { type: String, required: true },
+    fcm_token: String,
+    createdOn: { type: Date, default: Date.now },
+    role: { type: String, enum: ['user', 'admin'], default: 'user' },
 });
 
-registrationSchema.index({ location: '2dsphere' });
+userRegistrationSchema.index({ location: '2dsphere' });
 
-const UserRegistration = mongoose.model('UserRegistration', registrationSchema);
+const UserRegistration = mongoose.model('UserRegistration', userRegistrationSchema);
 
 module.exports = UserRegistration;
